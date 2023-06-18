@@ -10,13 +10,22 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button github;
+    Button github, homeButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         github = findViewById(R.id.github);
+        homeButton = findViewById(R.id.homeButton);
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Home_Page.class);
+                startActivity(intent);
+            }
+        });
 
         github.setOnClickListener(new View.OnClickListener() {
             @Override
