@@ -13,12 +13,13 @@ import java.util.List;
 
 public class StudentsDbHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "studentsDB";
+    private static final String DATABASE_NAME = "studentsDB";
     public static final String TABLE_NAME = "student";
 
     public static final String COLUMN_ID = "id";
-    public static final String COLUMN_NAME = "name";
-    public static final String COLUMN_AGE = "age";
+    private static final String COLUMN_NAME = "name";
+    private static final String COLUMN_AGE = "age";
+    private static final String COLUMN_CLAS = "class";
 
     public StudentsDbHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -26,10 +27,12 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         String sql = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "("
-                + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COLUMN_ID + " TEXT PRIMARY KEY,"
                 + COLUMN_NAME + " TEXT,"
-                + COLUMN_AGE + " TEXT"
+                + COLUMN_AGE + " TEXT,"
+                + COLUMN_CLAS + " TEXT"
                 + ")";
         db.execSQL(sql);
     }
@@ -48,6 +51,7 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
         values.put(COLUMN_NAME, student.getName());
         values.put(COLUMN_ID, student.getId());
         values.put(COLUMN_AGE, student.getAge());
+        values.put(COLUMN_CLAS, student.getClas());
 
         db.insert(TABLE_NAME, null, values);
         db.close();
@@ -79,25 +83,13 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
 
-        /*
-        * if (cursorCourses.moveToFirst()) {
-            do {
-
-                studentArrayList.add(new StudentModel(cursorCourses.getString(1),
-                      cursorCourses.getInt(2),
-                        cursorCourses.getInt(3) == 1 ? true : false));
-            } while (cursorCourses.moveToNext());
-
-        }
-        * */
-
         if (cursor.moveToFirst()) {
             do {
                 @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
                 @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
                 @SuppressLint("Range")  String rollNo = cursor.getString(cursor.getColumnIndex(COLUMN_AGE));
-                //@SuppressLint("Range") boolean isEnroll = cursor.getInt(cursor.getColumnIndex(COLUMN_ENROLL))>0;
-                students.add(new Student(name, rollNo));
+                @SuppressLint("Range") String clas = cursor.getString(cursor.getColumnIndex(COLUMN_CLAS));
+                students.add(new Student(id, name, rollNo, clas));
             } while (cursor.moveToNext());
         }
 

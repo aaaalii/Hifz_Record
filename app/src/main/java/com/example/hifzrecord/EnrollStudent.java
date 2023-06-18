@@ -9,9 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class EnrollStudent extends AppCompatActivity {
-    EditText name, age, sabaq;
+    EditText name, age, rollno;
     Button enroll;
     TextView textView;
 
@@ -28,29 +29,24 @@ public class EnrollStudent extends AppCompatActivity {
         name = findViewById(R.id.name);
         age = findViewById(R.id.age);
         enroll = findViewById(R.id.enrollStudent);
+        rollno = findViewById(R.id.rollno);
         textView = findViewById(R.id.textView3);
-
-        sabaq = findViewById(R.id.sabaq);
 
         enroll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String sbq = sabaq.getText().toString();
                 String n = name.getText().toString();
                 String a = age.getText().toString();
+                String r = rollno.getText().toString();
 
-                Student student = new Student(n, a);
-                if(sbq == null){
-                    studentsDbHelper.insertStudent(student);
-                    textView.setText("Student Enrolled");
+                Student student = new Student(Integer.parseInt(r), n, a, null);
+
+                if(n == null || a == null || r == null){
+                    // Add Toast
                 }
-                else{
-                    SabaqDbHelper sabaqDbHelper = new SabaqDbHelper(EnrollStudent.this);
-                    sabaqDbHelper.insertSabaq(sabaq.toString());
+                else {
                     studentsDbHelper.insertStudent(student);
-                    textView.setText("Student Enrolled");
-
                 }
             }
         });

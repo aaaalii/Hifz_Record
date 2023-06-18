@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class SabaqDbHelper extends SQLiteOpenHelper {
-        private static final String DATABASE_NAME = "students";
+        private static final String DATABASE_NAME = "studentsDB";
         private static final String TABLE_NAME = "sabaq_table";
         private static final String COLUMN_SABAQ = "sabaq";
         private static final String COLUMN_ASBAQ = "asbaq";

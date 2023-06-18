@@ -4,16 +4,16 @@ public class Student {
     private int id;
     private String name;
     private String  age;
-    //private String Class;
+    private String Class;
 
     public Student() {
     }
 
-    public Student(String name, String age){
-        //this.id = id;
+    public Student(int id, String name, String age, String clas){
+        this.id = id;
         this.name=name;
         this.age=age;
-        //this.Class = Class;
+        this.Class = clas;
     }
 
     public int getId() {
@@ -40,11 +40,11 @@ public class Student {
         this.age = age;
     }
 
-//    public String getClasss(){
-//        return Class;
-//    }
-//
-//    public void setClass(String Class) {
-//        this.Class = Class;
-//    }
+    public String getClas(){
+        return Class;
+    }
+
+    public void setClass(String Class) {
+        this.Class = Class;
+    }
 }

@@ -28,15 +28,14 @@ public class ShowAllStudents extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
 
-
         StudentsDbHelper studentsDbHelper = new StudentsDbHelper(this);
         SQLiteDatabase db = studentsDbHelper.getWritableDatabase();
 
-
         List<Student> students = studentsDbHelper.selectAllStudents();
 
+        recyclerView.setLayoutManager(layoutManager);
 
-
-
+        adapter = new RecyclerViewAdapter(students) ;
+        recyclerView.setAdapter(adapter);
         }
 }
