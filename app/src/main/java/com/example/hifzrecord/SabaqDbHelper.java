@@ -6,11 +6,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class SabaqDbHelper extends SQLiteOpenHelper {
-        private static final String DATABASE_NAME = "students.db";
+        private static final String DATABASE_NAME = "students";
         private static final String TABLE_NAME = "sabaq_table";
         private static final String COLUMN_SABAQ = "sabaq";
         private static final String COLUMN_ASBAQ = "asbaq";
-        private static final String COLOUMN_MANZIL = "manzil";
+        private static final String COLUMN_MANZIL = "manzil";
         private static final String COLUMN_PARENT_ID = "parent_id";
 
         public SabaqDbHelper(Context context) {
@@ -23,10 +23,10 @@ public class SabaqDbHelper extends SQLiteOpenHelper {
                         "CREATE TABLE " + TABLE_NAME + "(" +
                                 COLUMN_SABAQ + " TEXT," +
                                 COLUMN_ASBAQ + " TEXT," +
-                                COLOUMN_MANZIL + "TEXT," +
+                                COLUMN_MANZIL + "TEXT," +
                                 COLUMN_PARENT_ID + " INTEGER," +
                                 "FOREIGN KEY(" + COLUMN_PARENT_ID + ") REFERENCES " +
-                                StudentsDbHelper.getTableName() + "(" + StudentsDbHelper.getColumnId() + "))";
+                                StudentsDbHelper.TABLE_NAME + "(" + StudentsDbHelper.COLUMN_ID + "))";
                 db.execSQL(SQL_CREATE_TABLE);
         }
 
@@ -54,7 +54,7 @@ public class SabaqDbHelper extends SQLiteOpenHelper {
                 SQLiteDatabase db = this.getWritableDatabase();
 
                 ContentValues values = new ContentValues();
-                values.put(COLUMN_SABAQ, asbaq);
+                values.put(COLUMN_ASBAQ, asbaq);
 
                 //values.put(COLUMN_AGE, student.getAge());
                 //values.put(COLUMN_CLASS, student.isEnroll());
@@ -67,7 +67,7 @@ public class SabaqDbHelper extends SQLiteOpenHelper {
                 SQLiteDatabase db = this.getWritableDatabase();
 
                 ContentValues values = new ContentValues();
-                values.put(COLUMN_SABAQ, manzil);
+                values.put(COLUMN_MANZIL, manzil);
 
                 //values.put(COLUMN_AGE, student.getAge());
                 //values.put(COLUMN_CLASS, student.isEnroll());

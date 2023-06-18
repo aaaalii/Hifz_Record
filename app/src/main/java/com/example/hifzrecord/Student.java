@@ -3,13 +3,13 @@ package com.example.hifzrecord;
 public class Student {
     private int id;
     private String name;
-    private int age;
+    private String  age;
     //private String Class;
 
     public Student() {
     }
 
-    public Student(String name, int age){
+    public Student(String name, String age){
         //this.id = id;
         this.name=name;
         this.age=age;
@@ -32,11 +32,11 @@ public class Student {
         this.name = name;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
