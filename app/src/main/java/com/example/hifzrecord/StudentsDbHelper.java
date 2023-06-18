@@ -23,6 +23,13 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, 1);
     }
 
+    public static String getTableName(){
+        return TABLE_NAME;
+    }
+
+    public static String getColumnId(){
+        return COLUMN_ID;
+    }
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "("
@@ -94,7 +101,7 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
                 @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
                 @SuppressLint("Range")  int age = cursor.getInt(cursor.getColumnIndex(COLUMN_AGE));
                 //@SuppressLint("Range") boolean isEnroll = cursor.getInt(cursor.getColumnIndex(COLUMN_ENROLL))>0;
-                students.add(new Student(id, name, age));
+                students.add(new Student(name, age));
             } while (cursor.moveToNext());
         }
 
