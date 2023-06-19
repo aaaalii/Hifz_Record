@@ -16,13 +16,6 @@ public class updateSabaq2 extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        String rollno = intent.getStringExtra("rollno");
-        StudentsDbHelper studentsDbHelper = new StudentsDbHelper(this);
 
-        List<Student> students = studentsDbHelper.selectAllStudents();
-
-        for(int i= 0; i<students.size();i++){
-
-        }
     }
 }

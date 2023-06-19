@@ -8,7 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class SabaqDbHelper extends SQLiteOpenHelper {
         private static final String DATABASE_NAME = "studentsDB";
         private static final String TABLE_NAME = "sabaq_table";
-        private static final String COLUMN_SABAQ = "sabaq";
+        private static final String COLUMN_SABAQ_STARTING_AYAT = "start";
+        private static final String COLUMN_SABAQ_ENDING_AYAT = "end";
         private static final String COLUMN_ASBAQ = "asbaq";
         private static final String COLUMN_MANZIL = "manzil";
         private static final String COLUMN_PARENT_ID = "parent_id";
