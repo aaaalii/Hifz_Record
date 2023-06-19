@@ -8,9 +8,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class SabaqDbHelper extends SQLiteOpenHelper {
         private static final String DATABASE_NAME = "studentsDB";
         private static final String TABLE_NAME = "sabaq_table";
+
+        private static final String COLUMN_SABAQ_SURAH = "sabaqSurah";
         private static final String COLUMN_SABAQ_STARTING_AYAT = "start";
-        private static final String COLUMN_SABAQ_ENDING_AYAT = "end";
-        private static final String COLUMN_ASBAQ = "asbaq";
+        private static final String COLUMN_SABAQ_ENDING_AYAT = "eynd";
+        private static final String COLUMN_SABAQI_SURAH = "sabaqiSurah";
         private static final String COLUMN_MANZIL = "manzil";
         private static final String COLUMN_PARENT_ID = "parent_id";
 
@@ -22,8 +24,10 @@ public class SabaqDbHelper extends SQLiteOpenHelper {
         public void onCreate(SQLiteDatabase db) {
                 final String SQL_CREATE_TABLE =
                         "CREATE TABLE " + TABLE_NAME + "(" +
-                                COLUMN_SABAQ + " TEXT," +
-                                COLUMN_ASBAQ + " TEXT," +
+                                COLUMN_SABAQ_SURAH + "TEXT, "+
+                                COLUMN_SABAQ_STARTING_AYAT + " TEXT," +
+                                COLUMN_SABAQ_ENDING_AYAT + "TEXT," +
+                                COLUMN_SABAQI_SURAH + " TEXT," +
                                 COLUMN_MANZIL + "TEXT," +
                                 COLUMN_PARENT_ID + " INTEGER," +
                                 "FOREIGN KEY(" + COLUMN_PARENT_ID + ") REFERENCES " +
@@ -38,11 +42,13 @@ public class SabaqDbHelper extends SQLiteOpenHelper {
                 onCreate(db);
         }
 
-        public void insertSabaq(String sabaq){
+        public void insertSabaq(String sabaqSurah, String start, String eynd){
                 SQLiteDatabase db = this.getWritableDatabase();
 
                 ContentValues values = new ContentValues();
-                values.put(COLUMN_SABAQ, sabaq);
+                values.put(COLUMN_SABAQ_SURAH, sabaqSurah);
+                values.put(COLUMN_SABAQ_STARTING_AYAT, start);
+                values.put(COLUMN_SABAQ_ENDING_AYAT, eynd);
 
                 //values.put(COLUMN_AGE, student.getAge());
                 //values.put(COLUMN_CLASS, student.isEnroll());
@@ -51,11 +57,11 @@ public class SabaqDbHelper extends SQLiteOpenHelper {
                 db.close();
         }
 
-        public void insertAsbaq(String asbaq){
+        public void insertSabaqi(String asbaq){
                 SQLiteDatabase db = this.getWritableDatabase();
 
                 ContentValues values = new ContentValues();
-                values.put(COLUMN_ASBAQ, asbaq);
+                values.put(COLUMN_SABAQI_SURAH, asbaq);
 
                 //values.put(COLUMN_AGE, student.getAge());
                 //values.put(COLUMN_CLASS, student.isEnroll());
