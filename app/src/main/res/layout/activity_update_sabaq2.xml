@@ -7,7 +7,7 @@
     tools:context=".MainActivity4">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/title2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.177"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
+        app:layout_constraintTop_toBottomOf="@+id/sabaqStart" />
 
     <TextView
         android:id="@+id/textView5"
@@ -45,80 +45,92 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.182"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText7" />
+        app:layout_constraintTop_toBottomOf="@+id/sabqiSurah" />
 
     <EditText
-        android:id="@+id/editTextText4"
+        android:id="@+id/sabaqSurah"
         android:layout_width="222dp"
         android:layout_height="49dp"
         android:layout_marginTop="36dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="Surah number."
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.291"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/title2" />
 
     <EditText
-        android:id="@+id/editTextText5"
+        android:id="@+id/sabaqStart"
         android:layout_width="95dp"
         android:layout_height="42dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:inputType="text"
-
         android:hint="Start ayat"
+
+        android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+        app:layout_constraintTop_toBottomOf="@+id/sabaqSurah" />
 
     <EditText
-        android:id="@+id/editTextText6"
+        android:id="@+id/sabaqEnd"
         android:layout_width="86dp"
         android:layout_height="41dp"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="End ayat"
-        android:inputType="text"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
-        app:layout_constraintStart_toEndOf="@+id/editTextText5"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+        app:layout_constraintHorizontal_bias="0.229"
+        app:layout_constraintStart_toEndOf="@+id/sabaqStart"
+        app:layout_constraintTop_toBottomOf="@+id/sabaqSurah" />
 
     <EditText
-        android:id="@+id/editTextText7"
+        android:id="@+id/sabqiSurah"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="Surah number"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.293"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
-        android:id="@+id/editTextText8"
+        android:id="@+id/manzilSurah"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="Surah number"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.318"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText8" />
+        app:layout_constraintTop_toBottomOf="@+id/manzilSurah" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="14dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:text="to"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/sabaqEnd"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toEndOf="@+id/sabaqStart"
+        app:layout_constraintTop_toBottomOf="@+id/sabaqSurah" />
 </androidx.constraintlayout.widget.ConstraintLayout>

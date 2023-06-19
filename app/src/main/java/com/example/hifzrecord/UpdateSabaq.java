@@ -47,6 +47,7 @@ public class UpdateSabaq extends AppCompatActivity {
             public void onClick(View v) {
                 if(chk){
                     Intent intent1 = new Intent(UpdateSabaq.this, updateSabaq2.class);
+                    intent1.putExtra("rollno", roll);
                     startActivity(intent1);
                 }
                 else{

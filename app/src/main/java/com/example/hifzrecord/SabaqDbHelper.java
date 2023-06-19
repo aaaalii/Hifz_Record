@@ -29,7 +29,7 @@ public class SabaqDbHelper extends SQLiteOpenHelper {
                                 COLUMN_SABAQ_ENDING_AYAT + "TEXT," +
                                 COLUMN_SABAQI_SURAH + " TEXT," +
                                 COLUMN_MANZIL + "TEXT," +
-                                COLUMN_PARENT_ID + " INTEGER," +
+                                COLUMN_PARENT_ID + " TEXT," +
                                 "FOREIGN KEY(" + COLUMN_PARENT_ID + ") REFERENCES " +
                                 StudentsDbHelper.TABLE_NAME + "(" + StudentsDbHelper.COLUMN_ID + "))";
                 db.execSQL(SQL_CREATE_TABLE);
@@ -42,45 +42,74 @@ public class SabaqDbHelper extends SQLiteOpenHelper {
                 onCreate(db);
         }
 
-        public void insertSabaq(String sabaqSurah, String start, String eynd){
+        public long insertSabaq(String id, String sabaqSurah, String start, String eynd){
                 SQLiteDatabase db = this.getWritableDatabase();
 
                 ContentValues values = new ContentValues();
                 values.put(COLUMN_SABAQ_SURAH, sabaqSurah);
                 values.put(COLUMN_SABAQ_STARTING_AYAT, start);
                 values.put(COLUMN_SABAQ_ENDING_AYAT, eynd);
+                values.put(COLUMN_PARENT_ID, id);
 
                 //values.put(COLUMN_AGE, student.getAge());
                 //values.put(COLUMN_CLASS, student.isEnroll());
 
-                db.insert(TABLE_NAME, null, values);
+                long chk = db.insert(TABLE_NAME, null, values);
                 db.close();
+
+                return chk;
         }
 
-        public void insertSabaqi(String asbaq){
+        public long insertSabaqi(String asbaq, String id){
                 SQLiteDatabase db = this.getWritableDatabase();
 
                 ContentValues values = new ContentValues();
                 values.put(COLUMN_SABAQI_SURAH, asbaq);
+                values.put(COLUMN_PARENT_ID, id);
 
                 //values.put(COLUMN_AGE, student.getAge());
                 //values.put(COLUMN_CLASS, student.isEnroll());
 
-                db.insert(TABLE_NAME, null, values);
+                long chk = db.insert(TABLE_NAME, null, values);
                 db.close();
+
+                return chk;
         }
 
-        public void insertManzil(String manzil){
+        public long insertManzil(String manzil, String id){
                 SQLiteDatabase db = this.getWritableDatabase();
 
                 ContentValues values = new ContentValues();
                 values.put(COLUMN_MANZIL, manzil);
+                values.put(COLUMN_PARENT_ID, id);
 
                 //values.put(COLUMN_AGE, student.getAge());
                 //values.put(COLUMN_CLASS, student.isEnroll());
 
-                db.insert(TABLE_NAME, null, values);
+                long chk = db.insert(TABLE_NAME, null, values);
                 db.close();
+
+                return chk;
+        }
+
+        public long insertAll(String sabaqSurah, String sabaqStart, String sabaqEnd, String sabqi, String manzil, String id){
+                SQLiteDatabase db = this.getWritableDatabase();
+
+                ContentValues values = new ContentValues();
+                values.put(COLUMN_MANZIL, manzil);
+                values.put(COLUMN_PARENT_ID, id);
+                values.put(COLUMN_SABAQI_SURAH, sabqi);
+                values.put(COLUMN_SABAQ_SURAH, sabaqSurah);
+                values.put(COLUMN_SABAQ_STARTING_AYAT, sabaqStart);
+                values.put(COLUMN_SABAQ_ENDING_AYAT, sabaqEnd);
+
+                //values.put(COLUMN_AGE, student.getAge());
+                //values.put(COLUMN_CLASS, student.isEnroll());
+
+                long chk = db.insert(TABLE_NAME, null, values);
+                db.close();
+
+                return chk;
         }
 
 
