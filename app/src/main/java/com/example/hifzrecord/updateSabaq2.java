@@ -15,6 +15,9 @@ public class updateSabaq2 extends AppCompatActivity {
 
     EditText sabaqSurah, sabaqStart, sabaqEnd, sabqi, manzil;
     Button save;
+
+    //SabaqDbHelper sabaqDbHelper;
+    StudentsDbHelper studentsDbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +69,7 @@ public class updateSabaq2 extends AppCompatActivity {
 //        }
 //        //////////////
 
-        SabaqDbHelper sabaqDbHelper = new SabaqDbHelper(this);
-
+        studentsDbHelper = new StudentsDbHelper(this);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,7 +110,7 @@ public class updateSabaq2 extends AppCompatActivity {
                 }
                 //////////////
 
-                long chk = sabaqDbHelper.insertAll(s1, s2, s3, s4, s5, rollno);
+                long chk = studentsDbHelper.insertAll(s1, s2, s3, s4, s5, rollno);
 
                 if(chk == -1){
                     Toast.makeText(updateSabaq2.this, "Insertion Failed!!", Toast.LENGTH_SHORT).show();

@@ -22,18 +22,30 @@ public class SabaqDbHelper extends SQLiteOpenHelper {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-                final String SQL_CREATE_TABLE =
-                        "CREATE TABLE " + TABLE_NAME + "(" +
-                                COLUMN_SABAQ_SURAH + "TEXT, "+
-                                COLUMN_SABAQ_STARTING_AYAT + " TEXT," +
-                                COLUMN_SABAQ_ENDING_AYAT + "TEXT," +
-                                COLUMN_SABAQI_SURAH + " TEXT," +
-                                COLUMN_MANZIL + "TEXT," +
-                                COLUMN_PARENT_ID + " TEXT," +
-                                "FOREIGN KEY(" + COLUMN_PARENT_ID + ") REFERENCES " +
-                                StudentsDbHelper.TABLE_NAME + "(" + StudentsDbHelper.COLUMN_ID + "))";
-                db.execSQL(SQL_CREATE_TABLE);
+
+                String sql = "CREATE TABLE " + TABLE_NAME + "(" +
+                        COLUMN_SABAQ_SURAH + "TEXT, "+
+                        COLUMN_SABAQ_STARTING_AYAT + " TEXT," +
+                        COLUMN_SABAQ_ENDING_AYAT + "TEXT," +
+                        COLUMN_SABAQI_SURAH + " TEXT," +
+                        COLUMN_MANZIL + "TEXT," +
+                        COLUMN_PARENT_ID + " TEXT," +
+                        "FOREIGN KEY(" + COLUMN_PARENT_ID + ") REFERENCES " +
+                        StudentsDbHelper.TABLE_NAME + "(" + StudentsDbHelper.COLUMN_ID + "))";
+                db.execSQL(sql);
         }
+
+//        @Override
+//        public void onCreate(SQLiteDatabase db) {
+//
+//                String sql = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "("
+//                        + COLUMN_ID + " TEXT PRIMARY KEY,"
+//                        + COLUMN_NAME + " TEXT,"
+//                        + COLUMN_AGE + " TEXT,"
+//                        + COLUMN_CLAS + " TEXT"
+//                        + ")";
+//                db.execSQL(sql);
+//        }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

@@ -15,11 +15,19 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "studentsDB";
     public static final String TABLE_NAME = "student";
-
     public static final String COLUMN_ID = "id";
     private static final String COLUMN_NAME = "name";
     private static final String COLUMN_AGE = "age";
     private static final String COLUMN_CLAS = "class";
+
+    // For sabaq table
+    public static final String TABLE_NAME_SABQ = "sabaq";
+    private static final String COLUMN_SABAQ_SURAH = "sabaqSurah";
+    private static final String COLUMN_SABAQ_STARTING_AYAT = "start";
+    private static final String COLUMN_SABAQ_ENDING_AYAT = "eynd";
+    private static final String COLUMN_SABQI_SURAH = "sabqiSurah";
+    private static final String COLUMN_MANZIL = "manzil";
+    private static final String COLUMN_PARENT_ID = "parent_id";
 
     public StudentsDbHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -34,13 +42,37 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
                 + COLUMN_AGE + " TEXT,"
                 + COLUMN_CLAS + " TEXT"
                 + ")";
+
+//        String sql2 = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_SABQ + "("
+//                + COLUMN_SABAQ_SURAH + "TEXT,"
+//                + COLUMN_SABAQ_ENDING_AYAT + "TEXT,"
+//                + COLUMN_SABAQ_STARTING_AYAT + "TEXT,"
+//                + COLUMN_SABQI_SURAH + "TEXT,"
+//                + COLUMN_MANZIL + "TEXT,"
+//                + COLUMN_PARENT_ID + " TEXT PRIMARY KEY,"
+//                + "FOREIGN KEY(" + COLUMN_PARENT_ID + ") REFERENCES " +
+//                TABLE_NAME + "(" + COLUMN_ID + "))";
+
+        String sql2 = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_SABQ + "("
+                + COLUMN_SABAQ_SURAH + " TEXT,"
+                + COLUMN_SABAQ_ENDING_AYAT + " TEXT,"
+                + COLUMN_SABAQ_STARTING_AYAT + " TEXT,"
+                + COLUMN_SABQI_SURAH + " TEXT,"
+                + COLUMN_MANZIL + " TEXT,"
+                + COLUMN_PARENT_ID + " TEXT PRIMARY KEY,"
+                + "FOREIGN KEY(" + COLUMN_PARENT_ID + ") REFERENCES " +
+                TABLE_NAME + "(" + COLUMN_ID + "))";
+
         db.execSQL(sql);
+        db.execSQL(sql2);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String sql = "DROP TABLE IF EXISTS " + TABLE_NAME;
+        String sql2 = "DROP TABLE IF EXISTS "+ TABLE_NAME_SABQ;
         db.execSQL(sql);
+        db.execSQL(sql2);
         onCreate(db);
     }
 
@@ -97,5 +129,22 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
         db.close();
 
         return students;
+    }
+
+    public long insertAll(String sabaqSurah, String sabaqStart, String sabaqEnd, String sabqi, String manzil, String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_MANZIL, manzil);
+        values.put(COLUMN_PARENT_ID, id);
+        values.put(COLUMN_SABQI_SURAH, sabqi);
+        values.put(COLUMN_SABAQ_ENDING_AYAT, sabaqEnd);
+        values.put(COLUMN_SABAQ_STARTING_AYAT, sabaqStart);
+        values.put(COLUMN_SABAQ_SURAH, sabaqSurah);
+
+        long chk = db.insert(TABLE_NAME_SABQ, null, values);
+        db.close();
+
+        return chk;
     }
 }
