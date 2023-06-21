@@ -59,7 +59,7 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
                 + COLUMN_SABAQ_STARTING_AYAT + " TEXT,"
                 + COLUMN_SABQI_SURAH + " TEXT,"
                 + COLUMN_MANZIL + " TEXT,"
-                + COLUMN_PARENT_ID + " TEXT PRIMARY KEY,"
+                + COLUMN_PARENT_ID + " TEXT,"
                 + "FOREIGN KEY(" + COLUMN_PARENT_ID + ") REFERENCES " +
                 TABLE_NAME + "(" + COLUMN_ID + "))";
 
@@ -76,7 +76,7 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void insertStudent(Student student) {
+    public long insertStudent(Student student) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -85,8 +85,10 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
         values.put(COLUMN_AGE, student.getAge());
         values.put(COLUMN_CLAS, student.getClas());
 
-        db.insert(TABLE_NAME, null, values);
+        long insert = db.insert(TABLE_NAME, null, values);
         db.close();
+
+        return insert;
     }
 
 //    public void updateStudent(Student student) {
@@ -105,7 +107,6 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
 //        db.delete(TABLE_NAME, COLUMN_ROLLNO + " = ?", new String[] {rollNo});
 //        db.close();
 //    }
-
 
     public List<Student> selectAllStudents() {
         List<Student> students = new ArrayList<>();

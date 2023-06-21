@@ -32,6 +32,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.data = students.get(position);
         holder.studentName.setText(holder.data.getName());
         holder.studentAge.setText(holder.data.getAge());
+        holder.studentRoll.setText(holder.data.getId());
     }
 
     @Override
@@ -41,14 +42,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public class MyVH extends RecyclerView.ViewHolder {
 
-        TextView studentName;
-        TextView studentAge;
+        TextView studentName, studentAge, studentRoll;
 
         Student data;
         public MyVH(@NonNull View itemView) {
             super(itemView);
-            studentName = itemView.findViewById(R.id.textView5);
-            studentAge = itemView.findViewById(R.id.textView6);
+            studentName = itemView.findViewById(R.id.viewName);
+            studentAge = itemView.findViewById(R.id.viewAge);
+            studentRoll = itemView.findViewById(R.id.viewAge);
         }
     }
 }

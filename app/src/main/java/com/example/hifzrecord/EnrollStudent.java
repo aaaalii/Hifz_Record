@@ -43,10 +43,16 @@ public class EnrollStudent extends AppCompatActivity {
                 Student student = new Student(Integer.parseInt(r), n, a, null);
 
                 if(n == null || a == null || r == null){
-                    // Add Toast
+                    Toast.makeText(EnrollStudent.this, "Enter values in all fields", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    studentsDbHelper.insertStudent(student);
+                    long insertId = studentsDbHelper.insertStudent(student);
+                    if(insertId != -1){
+                        Toast.makeText(EnrollStudent.this, "Student Enrolled Successfully", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(EnrollStudent.this, "Can not enroll student", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
