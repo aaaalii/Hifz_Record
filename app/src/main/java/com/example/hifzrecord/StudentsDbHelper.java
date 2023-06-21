@@ -132,12 +132,34 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
         return chk;
     }
 
-    public void getStudentRecord(String id){
+    public List<StudentFullRecord> getStudentRecord(String id){
+        List<StudentFullRecord> records = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(COLUMN_PARENT_ID, id);
 
-        db.g
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE ID = " + id;
+        String sql2 = "SELECT * FROM " + TABLE_NAME_SABQ + " WHERE " + COLUMN_PARENT_ID + " = " + id;
+
+        Cursor cursor = db.rawQuery(sql, null);
+        Cursor cursor2 = db.rawQuery(sql2, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                @SuppressLint("Range") int id1 = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
+                @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
+                @SuppressLint("Range") String age = cursor.getString(cursor.getColumnIndex(COLUMN_AGE));
+                @SuppressLint("Range") String sabaqSurah = cursor.getString(cursor.getColumnIndex(COLUMN_SABAQ_SURAH));
+                @SuppressLint("Range") String start = cursor.getString(cursor.getColumnIndex(COLUMN_SABAQ_STARTING_AYAT));
+                @SuppressLint("Range") String end = cursor.getString(cursor.getColumnIndex(COLUMN_SABAQ_ENDING_AYAT));
+                @SuppressLint("Range") String sabqi = cursor.getString(cursor.getColumnIndex(COLUMN_SABQI_SURAH));
+                @SuppressLint("Range") String manzil = cursor.getString(cursor.getColumnIndex(COLUMN_MANZIL));
+
+                records.add(new StudentFullRecord(id1, name, age, sabaqSurah, start, end, sabqi, manzil));
+            } while (cursor.moveToNext());
+        }
+
+        return records;
+
     }
 }

@@ -1,11 +1,13 @@
 package com.example.hifzrecord;
 
 public class StudentFullRecord {
-    String id, name, age, sabaqSurah, sabaqStart, sabaqEnd, sabqiSurah, manzilSurah;
+
+    int id;
+    String name, age, sabaqSurah, sabaqStart, sabaqEnd, sabqiSurah, manzilSurah;
 
     public StudentFullRecord(){}
 
-    public StudentFullRecord(String id, String name, String age, String sabaqSurah, String sabaqStart, String sabaqEnd, String sabqiSurah, String manzilSurah) {
+    public StudentFullRecord(int id, String name, String age, String sabaqSurah, String sabaqStart, String sabaqEnd, String sabqiSurah, String manzilSurah) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -16,7 +18,7 @@ public class StudentFullRecord {
         this.manzilSurah = manzilSurah;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -34,7 +36,7 @@ public class StudentFullRecord {
                 '}';
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

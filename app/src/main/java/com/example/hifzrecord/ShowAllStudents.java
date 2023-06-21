@@ -11,10 +11,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class ShowAllStudents extends AppCompatActivity {
+public class ShowAllStudents extends AppCompatActivity implements RecyclerViewAdapter.OnItemClickListener{
 
     RecyclerView recyclerView;
-    RecyclerView.Adapter adapter;
+    RecyclerViewAdapter adapter;
     RecyclerView.LayoutManager layoutManager;
 
     @Override
@@ -23,6 +23,9 @@ public class ShowAllStudents extends AppCompatActivity {
         setContentView(R.layout.activity_show_all_students);
 
         Intent intent = getIntent();
+
+        adapter.setOnItemClickListener(this); // Set the listener
+        recyclerView.setAdapter(adapter);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -37,5 +40,11 @@ public class ShowAllStudents extends AppCompatActivity {
 
         adapter = new RecyclerViewAdapter(students) ;
         recyclerView.setAdapter(adapter);
+        }
+
+        @Override
+        public void onItemClick(int position){
+            Intent intent = new Intent(this, seeRecord.class);
+            startActivity(intent);
         }
 }
