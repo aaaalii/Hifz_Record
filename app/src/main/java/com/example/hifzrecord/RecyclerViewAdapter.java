@@ -1,10 +1,8 @@
 package com.example.hifzrecord;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,7 +19,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.listener = listener;
     }
 
-
     public RecyclerViewAdapter(List<Student> students){
         this.students = students;
     }
@@ -37,8 +34,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyVH holder, int position) {
         holder.data = students.get(position);
         holder.studentName.setText(holder.data.getName());
+        holder.studentsRoll.setText(Integer.toString(holder.data.getId()));
         holder.studentAge.setText(holder.data.getAge());
-        holder.studentRoll.setText(holder.data.getId());
     }
 
     @Override
@@ -47,11 +44,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public class MyVH extends RecyclerView.ViewHolder {
-
-        TextView studentName, studentAge, studentRoll;
-
+        TextView studentName, studentAge, studentsRoll;
         Student data;
-
 
         public MyVH(@NonNull View itemView) {
             super(itemView);
@@ -61,20 +55,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 public void onClick(View v) {
                     if (listener != null) {
                         int position = getAdapterPosition();
+                        int id = students.get(position).getId();
                         if (position != RecyclerView.NO_POSITION) {
-                            listener.onItemClick(position);
+                            listener.onItemClick(id);
                         }
                     }
                 }
             });
 
             studentName = itemView.findViewById(R.id.viewName);
+            studentsRoll = itemView.findViewById(R.id.viewRoll2);
             studentAge = itemView.findViewById(R.id.viewAge);
-            studentRoll = itemView.findViewById(R.id.viewAge);
         }
     }
 
     interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(int id);
     }
 }

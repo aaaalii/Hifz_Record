@@ -132,6 +132,7 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
         return chk;
     }
 
+    @SuppressLint("Range")
     public List<StudentFullRecord> getStudentRecord(String id){
         List<StudentFullRecord> records = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -141,8 +142,20 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
         String sql = "SELECT * FROM " + TABLE_NAME + " WHERE ID = " + id;
         String sql2 = "SELECT * FROM " + TABLE_NAME_SABQ + " WHERE " + COLUMN_PARENT_ID + " = " + id;
 
-        Cursor cursor = db.rawQuery(sql, null);
-        Cursor cursor2 = db.rawQuery(sql2, null);
+        String query = "SELECT " +
+                "s." + COLUMN_ID + ", " +
+                "s." + COLUMN_NAME + ", " +
+                "s." + COLUMN_AGE + ", " +
+                "d." + COLUMN_SABAQ_SURAH + ", " +
+                "d." + COLUMN_SABAQ_STARTING_AYAT + ", " +
+                "d." + COLUMN_SABAQ_ENDING_AYAT + ", " +
+                "d." + COLUMN_SABQI_SURAH + ", " +
+                "d." + COLUMN_MANZIL + " " +
+                "FROM " + TABLE_NAME + " s " +
+                "INNER JOIN " + TABLE_NAME_SABQ + " d " +
+                "ON d." + COLUMN_PARENT_ID + " = s." + COLUMN_ID;
+
+        Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToFirst()) {
             do {

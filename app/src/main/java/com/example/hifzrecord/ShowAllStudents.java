@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -15,7 +16,9 @@ public class ShowAllStudents extends AppCompatActivity implements RecyclerViewAd
 
     RecyclerView recyclerView;
     RecyclerViewAdapter adapter;
+    //RecyclerViewAdapter ad;
     RecyclerView.LayoutManager layoutManager;
+    String rollToBeSend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +27,8 @@ public class ShowAllStudents extends AppCompatActivity implements RecyclerViewAd
 
         Intent intent = getIntent();
 
-        adapter.setOnItemClickListener(this); // Set the listener
-        recyclerView.setAdapter(adapter);
+        //ad = new RecyclerViewAdapter()
+//        adapter.setOnItemClickListener(this); // Set the listener
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -38,13 +41,16 @@ public class ShowAllStudents extends AppCompatActivity implements RecyclerViewAd
 
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new RecyclerViewAdapter(students) ;
+        adapter = new RecyclerViewAdapter(students);
+        adapter.setOnItemClickListener(this); // Set the listener
         recyclerView.setAdapter(adapter);
         }
 
         @Override
-        public void onItemClick(int position){
+        public void onItemClick(int id){
             Intent intent = new Intent(this, seeRecord.class);
+            intent.putExtra("roll", id);
+            //Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
             startActivity(intent);
         }
 }
