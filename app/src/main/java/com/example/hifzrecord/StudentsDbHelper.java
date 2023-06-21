@@ -91,23 +91,6 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
         return insert;
     }
 
-//    public void updateStudent(Student student) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues values = new ContentValues();
-//        values.put(COLUMN_NAME, student.getName());
-//        values.put(COLUMN_ROLLNO, student.getRollNo());
-//        values.put(COLUMN_ENROLL, student.isEnroll());
-//
-//        db.update(TABLE_NAME, values, COLUMN_ROLLNO + " = ?", new String[] {student.getRollNo()});
-//        db.close();
-//    }
-
-//    public void deleteStudent(String rollNo) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        db.delete(TABLE_NAME, COLUMN_ROLLNO + " = ?", new String[] {rollNo});
-//        db.close();
-//    }
-
     public List<Student> selectAllStudents() {
         List<Student> students = new ArrayList<>();
 
@@ -147,5 +130,14 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
         db.close();
 
         return chk;
+    }
+
+    public void getStudentRecord(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_PARENT_ID, id);
+
+        db.g
     }
 }
