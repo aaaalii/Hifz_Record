@@ -96,17 +96,20 @@ public class updateSabaq2 extends AppCompatActivity {
 
                 if(n1 >= 114){
                     Toast.makeText(updateSabaq2.this, "Enter valid surah number", Toast.LENGTH_SHORT).show();
-                    sabaqSurah.requestFocus();
+                    return;
+                    //sabaqSurah.requestFocus();
                 }
 
                 if(n4 >= 114){
                     Toast.makeText(updateSabaq2.this, "Enter valid surah number", Toast.LENGTH_SHORT).show();
-                    sabqi.requestFocus();
+                    return;
+                    //sabqi.requestFocus();
                 }
 
                 if(n5 >= 114){
                     Toast.makeText(updateSabaq2.this, "Enter valid surah number", Toast.LENGTH_SHORT).show();
-                    manzil.requestFocus();
+                    return;
+//                    manzil.requestFocus();
                 }
                 //////////////
 

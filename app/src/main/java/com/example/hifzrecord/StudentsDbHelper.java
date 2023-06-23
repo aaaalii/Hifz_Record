@@ -137,10 +137,10 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
         List<StudentFullRecord> records = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
+//        ContentValues values = new ContentValues();
 
-        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE ID = " + id;
-        String sql2 = "SELECT * FROM " + TABLE_NAME_SABQ + " WHERE " + COLUMN_PARENT_ID + " = " + id;
+//        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE ID = " + id;
+//        String sql2 = "SELECT * FROM " + TABLE_NAME_SABQ + " WHERE " + COLUMN_PARENT_ID + " = " + id;
 
         String query = "SELECT " +
                 "s." + COLUMN_ID + ", " +
@@ -173,6 +173,5 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
         }
 
         return records;
-
     }
 }
