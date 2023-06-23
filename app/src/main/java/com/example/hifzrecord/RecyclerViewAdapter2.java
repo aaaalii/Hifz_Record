@@ -38,7 +38,7 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
         holder.studentName.setText(holder.data.getName());
         holder.studentAge.setText(holder.data.getAge());
         holder.studentRoll.setText(Integer.toString(holder.data.getId()));
-        holder.sabaq.setText("Surah no.: " + holder.data.getSabaqSurah()+ "Starting ayat: " + holder.data.getSabaqStart() + "Ending ayat:" + holder.data.getSabaqEnd());
+        holder.sabaq.setText("Surah no.: " + holder.data.getSabaqSurah()+ "\nStarting ayat: " + holder.data.getSabaqStart() + "\nEnding ayat:" + holder.data.getSabaqEnd());
         holder.sabqi.setText(holder.data.getSabqiSurah());
         holder.manzil.setText(holder.data.getManzilSurah());
     }

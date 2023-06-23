@@ -48,6 +48,9 @@ public class EnrollStudent extends AppCompatActivity {
                 else {
                     long insertId = studentsDbHelper.insertStudent(student);
                     if(insertId != -1){
+                        name.setText("");
+                        age.setText("");
+                        rollno.setText("");
                         Toast.makeText(EnrollStudent.this, "Student Enrolled Successfully", Toast.LENGTH_SHORT).show();
                     }
                     else{
